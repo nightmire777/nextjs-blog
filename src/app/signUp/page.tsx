@@ -1,22 +1,8 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import React, { createContext } from 'react';
-import { useState } from 'react';
-import StartLoader from './startLoader';
 
-
-export default function Home() {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleGetStarted= ()  => {
-    setIsLoading(true);
-  };
-
-  if (isLoading) {
-    return <StartLoader />;
-  }
-
+export default function SignUp() {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
@@ -30,7 +16,7 @@ export default function Home() {
         transition={{ delay: 0.5, duration: 1 }}
         className="title"
       >
-        Monash Hackfest Landing Page Test!
+        Welcome to Sign Up Page!
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, x: -50 }}
@@ -38,7 +24,7 @@ export default function Home() {
         transition={{ delay: 0.7, duration: 0.8 }}
         className="description"
       >
-        Experience Smooth Transitions and Animations!
+        TBD // Just Testing Around.
       </motion.p>
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -46,8 +32,6 @@ export default function Home() {
         transition={{ delay: 1, duration: 0.8 }}
         className="buttons"
       >
-        <button className = "buttonOutline" onClick={handleGetStarted}>Get Started</button>
-        <button className="buttonOutline">Learn More</button>
       </motion.div>
     </motion.div>
   );

@@ -1,0 +1,6 @@
+additional things needed to be installed in terminal:
+
+npm install framer-notion
+
+npm install styled-components
+

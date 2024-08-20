@@ -2,32 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
+/* Global Styles */
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: linear-gradient(135deg, #1c1c1c, #323232);
+  color: #ffffff;
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.description {
+  font-size: 1.2rem;
+  margin-top: 1.5rem;
+  max-width: 600px;
+}
+
+.buttons {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1.5rem;
+}
+
+.button {
+  padding: 0.75rem 2rem;
+  background-color: #ff4757;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #ff6b81;
+}
+
+.buttonOutline {
+  padding: 0.75rem 2rem;
+  background: none;
+  border: 2px solid #ff4757;
+  color: #ff4757;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.buttonOutline:hover {
+  color: #ff6b81;
+  border-color: #ff6b81;
 }
