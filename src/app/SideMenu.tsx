@@ -1,20 +1,10 @@
-import { useState } from "react";
-import "./sidebar.css";
-import { FaHome, FaInfoCircle, FaConciergeBell, FaEnvelope } from "react-icons/fa";
-
-// Define the types for your navigation items
-const navItems: string[] = ["home", "about", "services", "contact"];
-
-// Define the icons with proper typing
-const icons: { [key: string]: JSX.Element } = {
-  home: <FaHome size={20} />,
-  about: <FaInfoCircle size={20} />,
-  services: <FaConciergeBell size={20} />,
-  contact: <FaEnvelope size={20} />,
-};
+import { useState } from 'react';
+import Link from 'next/link';
+import './sidebar.css';
+import { FaWallet, FaMoneyBillWave, FaCreditCard, FaUser } from 'react-icons/fa';
 
 export const SideMenu = () => {
-  const [active, setActive] = useState<number>(1);
+  const [active, setActive] = useState<number>(0);
 
   const goto = (index: number) => setActive(index);
 
@@ -31,16 +21,45 @@ export const SideMenu = () => {
             "--top": `${active === 0 ? 0 : active * 56}px`,
           } as any}
         >
-          {navItems.map((item, index) => (
+          <Link href="/" passHref>
             <button
-              className={active === index ? "active" : ""}
-              key={item}
-              onClick={() => goto(index)}
+              className={active === 0 ? "active" : ""}
+              onClick={() => goto(0)}
             >
-              {icons[item] || <span>{item}</span>} {/* Fallback to text if no icon */}
-              <p>{item}</p>
+              <FaWallet size={20} />
+              <p>Wallet</p>
             </button>
-          ))}
+          </Link>
+
+          <Link href="/pocket" passHref>
+            <button
+              className={active === 1 ? "active" : ""}
+              onClick={() => goto(1)}
+            >
+              <FaMoneyBillWave size={20} />
+              <p>Pocket</p>
+            </button>
+          </Link>
+
+          <Link href="/view-card" passHref>
+            <button
+              className={active === 2 ? "active" : ""}
+              onClick={() => goto(2)}
+            >
+              <FaCreditCard size={20} />
+              <p>View Card</p>
+            </button>
+          </Link>
+
+          <Link href="/profile" passHref>
+            <button
+              className={active === 3 ? "active" : ""}
+              onClick={() => goto(3)}
+            >
+              <FaUser size={20} />
+              <p>Profile</p>
+            </button>
+          </Link>
         </nav>
       </div>
     </aside>

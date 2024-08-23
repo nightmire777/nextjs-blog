@@ -42,4 +42,7 @@ Take note for this, else the code may have errors!
 npm install framer-notion
 # and
 npm install styled-components
+# and
+npm install react-icons --save
 ```
+
