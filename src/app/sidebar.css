@@ -1,0 +1,126 @@
+/* Sidebar.css */
+body {
+    background: #36367f;
+  }
+  
+  .sidebar {
+    position: absolute;
+    overflow: hidden;
+    top: 20px;
+    left: 20px;
+    bottom: 30px;
+    width: 64px;
+    border-radius: 16px;
+    background: #21214c;
+    will-change: width;
+    transition: width 0.4s;
+  }
+  
+  .sidebar:hover {
+    width: 260px;
+  }
+  
+  .inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 260px;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    height: 72px;
+    padding: 0 20px;
+    background: rgb(0 0 0 / 15%);
+  }
+  
+  .header h1 {
+    margin-left: 12px;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 2px;
+  }
+  
+  .menu {
+    position: relative;
+    display: grid;
+  }
+  
+  .menu::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 56px;
+    width: 6px;
+    background: #6154f7;
+    translate: 0 var(--top);
+    transition: 0.5s;
+  }
+  .menu button {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    height: 56px;
+    width: 100%;
+    padding: 0 22px;
+    color: rgb(255 255 255 / 60%);
+    transition: 0.5s;
+  }
+  
+  .menu button:hover > span {
+    opacity: 1;
+  }
+  
+  .menu :is(button:hover, .active) {
+    background: rgb(0 0 0 / 35%);
+    color: rgb(255 255 255 / 100%);
+    opacity: 1;
+  }
+  
+  .menu button p,
+  .header h1 {
+    opacity: 0;
+    transition: 0.5s;
+  }
+  
+  .menu button > img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .sidebar:hover :is(.menu button p, .header h1) {
+    opacity: 1;
+  }
+  
+  .sidebar:hover .menu .active {
+    cursor: default;
+  }
+  
+  .sidebar:hover .logo {
+    scale: 1;
+  }
+  
+  .sidebar:hover .menu button:hover:not(.active) {
+    background: rgb(0 0 0 / 8%);
+  }
+
+  .logo {
+    width: 50px; /* Adjust this value to control the width */
+    height: auto; /* This maintains the aspect ratio */
+    max-width: 100%; /* Ensures the image doesn't exceed the container's width */
+    max-height: 64px; /* Limits the height to fit within the sidebar's initial width */
+    object-fit: contain; /* Ensures the image scales correctly within its container */
+    margin-right: 5px; /* Optional: Adjust the spacing around the logo */
+    transition: transform 0.3s ease; /* Smooth transition for scaling on hover */
+    border-radius: 25%; /* Adjust the border radius as needed */
+    margin-left: -0.6rem;
+  }
+  
+  .sidebar:hover .logo {
+    transform: scale(1.1); /* Example for scaling up the logo slightly on hover */
+  }
+  
+  
