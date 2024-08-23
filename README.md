@@ -39,7 +39,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/deploym
 
 Take note for this, else the code may have errors!
 ```bash
-npm install framer-notion
+npm install framer-motion
 # and
 npm install styled-components
 ```
