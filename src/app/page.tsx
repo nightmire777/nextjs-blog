@@ -1,8 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import React, { createContext } from 'react';
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StartLoader from './startLoader';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -14,7 +13,7 @@ export default function Home() {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
 
-  const handleGetStarted= ()  => {
+  const handleGetStarted = () => {
     setIsLoading(true);
     // Add logic here to fetch wallet balance if needed
   };
@@ -90,7 +89,7 @@ export default function Home() {
         {walletAddress ? (
           <div>
             <p>Wallet: {walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</p>
-            <p>Balance: {balance ? `${balance.toFixed(3)} SOL` : 'Loading...'}</p>
+            <p>Balance: {balance ? `${balance.toFixed(3)} SOL `: 'Loading...'}</p>
           </div>
         ) : (
           <p>Wallet not connected</p>
@@ -137,7 +136,9 @@ export default function Home() {
         transition={{ delay: 1, duration: 0.8 }}
         className="buttons"
       >
-        <button className = "buttonOutline" onClick={handleGetStarted}>Get Started</button>
+        <button className="buttonOutline" onClick={handleGetStarted}>
+          Get Started
+        </button>
         <button className="buttonOutline">Learn More</button>
       </motion.div>
 
