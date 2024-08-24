@@ -33,7 +33,7 @@ export const SideMenu = () => {
       <div className="inner">
         <div className="header">
           <img src="/logo.jpg" alt="Logo" className="logo" />
-          <h1>MetaPay</h1>
+          <h1>MetaPayd</h1>
         </div>
         <nav
           className="menu"
