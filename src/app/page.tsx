@@ -100,13 +100,29 @@ export default function Home() {
         className={styles.walletContainer}
       >
         <div className={styles.balanceSection}>
-          <h2 className={styles.totalBalance}>Total balance</h2>
-          <h1 className={styles.balanceAmount}>8.80 SOL</h1>
+          <h2 className={styles.totalBalance}>Total balance: </h2>
+          <h1 className={styles.balanceAmount}>
+            {walletAddress ? (
+                <div>
+                    {balance ? `${balance.toFixed(3)} SOL `: 'Loading...'}
+                </div>
+                ) : (
+                <p>N/A SOL</p>
+            )}
+          </h1>
           <div className={styles.balanceActions}>
             <button className={styles.actionButton}>Send</button>
             <button className={styles.actionButton}>Reload</button>
             <button className={styles.actionButton}>Request</button>
-            <button className={styles.actionButton}>Connect</button>
+            {walletAddress ? (
+                <button className={styles.actionButton} onClick={disconnectWallet}>
+                    Disconnect Wallet
+                </button>
+                ) : (
+                <button className={styles.actionButton} onClick={connectWallet}>
+                    Connect Wallet
+                </button>
+            )}
           </div>
         </div>
         <div className={styles.currencyGrid}>
