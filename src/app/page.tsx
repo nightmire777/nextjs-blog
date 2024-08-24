@@ -16,9 +16,9 @@ export default function Home() {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
   const [currencyValues, setCurrencyValues] = useState({
-    MYR: "8.80",
+    SOL: "8.80",
+    MYR: "0.00",
     CNY: "0.00",
-    JPY: "0",
     SGD: "0.00",
   });
 
@@ -128,6 +128,21 @@ export default function Home() {
         <div className={styles.currencyGrid}>
           <div className={styles.currencyCard}>
             <Image
+              src="/flags/solana-logo.avif"
+              alt="SOL"
+              width={30}
+              height={20}
+            />
+            <span>SOL</span>
+            <input
+              type="text"
+              value={currencyValues.SOL}
+              onChange={(e) => handleChange("SOL", e.target.value)}
+              className={styles.currencyInput}
+            />
+          </div>
+          <div className={styles.currencyCard}>
+            <Image
               src="/flags/malaysia-flag.jpg"
               alt="MYR"
               width={30}
@@ -142,12 +157,7 @@ export default function Home() {
             />
           </div>
           <div className={styles.currencyCard}>
-            <Image
-              src="/flags/china-flag.jpg"
-              alt="CNY"
-              width={30}
-              height={20}
-            />
+            <Image src="/flags/china-flag.jpg" alt="JPY" width={30} height={20} />
             <span>CNY</span>
             <input
               type="text"
@@ -157,18 +167,8 @@ export default function Home() {
             />
           </div>
           <div className={styles.currencyCard}>
-            <Image src="/flags/japan-flag.png" alt="JPY" width={30} height={20} />
-            <span>JPY</span>
-            <input
-              type="text"
-              value={currencyValues.JPY}
-              onChange={(e) => handleChange("JPY", e.target.value)}
-              className={styles.currencyInput}
-            />
-          </div>
-          <div className={styles.currencyCard}>
             <Image
-              src="/flags/singapore-flag.png"
+              src="/flags/singapore-flag.avif"
               alt="SGD"
               width={30}
               height={20}
@@ -183,15 +183,15 @@ export default function Home() {
           </div>
         </div>
         <div className={styles.transactionsSection}>
-          <h3 style={{ color: "#ffffff" }}>Transactions</h3>
+          <h3 className = {styles.transactionword} style={{ color: "#ffffff" }}>Transactions</h3>
           <ul className={styles.transactionsList}>
             <li className={styles.transactionItem}>
-              <span>Edisijuta Parking</span>
-              <span>2 MYR</span>
+              <span>Youtube Premium</span>
+              <span>0.0118 SOL</span>
             </li>
             <li className={styles.transactionItem}>
-              <span>Edisijuta Parking</span>
-              <span>2 MYR</span>
+              <span>Spotify Premium</span>
+              <span>0.0115 SOL</span>
             </li>
           </ul>
         </div>

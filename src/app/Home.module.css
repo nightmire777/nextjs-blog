@@ -1,18 +1,21 @@
 .walletContainer {
-    padding: 20px;
-    max-width: 700px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: #392a76; /* Deep blue background */
-    border-radius: 15px;
-    padding: 30px;
-  }
+  padding: 20px;
+  max-width: 980px; /* Increased max-width for a better layout */
+  margin: 0 auto;
+  text-align: center;
+  background-color: rgba(57, 42, 118, 0.85); /* Adjusted to make the background more transparent */
+  border-radius: 20px; /* Increased border-radius for a smoother look */
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Added a subtle box-shadow for depth */
+}
+
   
   .balanceSection {
     margin-bottom: 30px;
   }
   
   .totalBalance {
+    font-weight: bold;
     font-size: 20px;
     color: #ffffff;
     margin-bottom: 10px;
@@ -50,19 +53,29 @@
   
   .currencyCard {
     background-color: #f5f5f5;
-    padding: 20px;
+    padding: 15px;
     border-radius: 10px;
     text-align: center;
-    font-size: 18px;
-    min-width: 120px;
-    min-height: 160px; /* Adjusted height */
+    font-size: 16px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 170px; /* Set a fixed width */
+    height: 170px; /* Set the same fixed height */
   }
   
+  .currencyCard img {
+    max-width: 40px;
+    max-height: 40px;
+    object-fit: contain;
+    margin-bottom: 5px;
+  }
+  
+  
+  
   .currencyCard span {
+    font-weight: 550;
     font-size: 16px;
     color: #000; /* Set text color to black for better readability */
     margin-top: 5px;
@@ -85,6 +98,13 @@
     border: 1px solid #4caf50;
   }
   
+  .transactionword {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 20px;
+  }
+
   .transactionsSection {
     margin-top: 30px;
   }
