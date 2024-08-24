@@ -1,12 +1,32 @@
-import { useState } from 'react';
+import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import './sidebar.css';
 import { FaWallet, FaMoneyBillWave, FaCreditCard, FaUser } from 'react-icons/fa';
+import './sidebar.css';
 
 export const SideMenu = () => {
-  const [active, setActive] = useState<number>(0);
+  const pathname = usePathname();
+  const [activeIndex, setActiveIndex] = useState<number>(0);
 
-  const goto = (index: number) => setActive(index);
+  useEffect(() => {
+    // Update activeIndex based on the current pathname
+    switch (pathname) {
+      case '/':
+        setActiveIndex(0);
+        break;
+      case '/pocket':
+        setActiveIndex(1);
+        break;
+      case '/view-card':
+        setActiveIndex(2);
+        break;
+      case '/profile':
+        setActiveIndex(3);
+        break;
+      default:
+        setActiveIndex(0);
+    }
+  }, [pathname]);
 
   return (
     <aside className="sidebar">
@@ -18,44 +38,32 @@ export const SideMenu = () => {
         <nav
           className="menu"
           style={{
-            "--top": `${active === 0 ? 0 : active * 56}px`,
-          } as any}
+            '--top': `${activeIndex * 56}px`,
+          } as React.CSSProperties} // Applying style dynamically with React.CSSProperties
         >
           <Link href="/" passHref>
-            <button
-              className={active === 0 ? "active" : ""}
-              onClick={() => goto(0)}
-            >
+            <button className={activeIndex === 0 ? 'active' : ''}>
               <FaWallet size={20} />
               <p>Wallet</p>
             </button>
           </Link>
 
           <Link href="/pocket" passHref>
-            <button
-              className={active === 1 ? "active" : ""}
-              onClick={() => goto(1)}
-            >
+            <button className={activeIndex === 1 ? 'active' : ''}>
               <FaMoneyBillWave size={20} />
               <p>Pocket</p>
             </button>
           </Link>
 
           <Link href="/view-card" passHref>
-            <button
-              className={active === 2 ? "active" : ""}
-              onClick={() => goto(2)}
-            >
+            <button className={activeIndex === 2 ? 'active' : ''}>
               <FaCreditCard size={20} />
               <p>View Card</p>
             </button>
           </Link>
 
           <Link href="/profile" passHref>
-            <button
-              className={active === 3 ? "active" : ""}
-              onClick={() => goto(3)}
-            >
+            <button className={activeIndex === 3 ? 'active' : ''}>
               <FaUser size={20} />
               <p>Profile</p>
             </button>
