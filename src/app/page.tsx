@@ -1,17 +1,30 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import React, { useState, useEffect } from 'react';
-import StartLoader from './startLoader';
+import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import StartLoader from "./startLoader";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
 import Sidebar from './Sidebar';
+import Image from "next/image";
+import styles from "./Home.module.css"; // Import CSS module
+import { SideMenu } from "./SideMenu";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
+  const [currencyValues, setCurrencyValues] = useState({
+    MYR: "8.80",
+    CNY: "0.00",
+    JPY: "0",
+    SGD: "0.00",
+  });
+
+  const handleChange = (currency: string, value: string) => {
+    setCurrencyValues({ ...currencyValues, [currency]: value });
+  };
 
   const handleGetStarted = () => {
     setIsLoading(true);
@@ -78,77 +91,99 @@ export default function Home() {
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 50 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: 'easeInOut' }}
-      className="container"
-    >
-      {/* Wallet Balance Display */}
-      <div className="balance-display">
-        {walletAddress ? (
-          <div>
-            <p>Wallet: {walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}</p>
-            <p>Balance: {balance ? `${balance.toFixed(3)} SOL `: 'Loading...'}</p>
+    <>
+      <SideMenu />
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeInOut" }}
+        className={styles.walletContainer}
+      >
+        <div className={styles.balanceSection}>
+          <h2 className={styles.totalBalance}>Total balance</h2>
+          <h1 className={styles.balanceAmount}>8.80 SOL</h1>
+          <div className={styles.balanceActions}>
+            <button className={styles.actionButton}>Send</button>
+            <button className={styles.actionButton}>Reload</button>
+            <button className={styles.actionButton}>Request</button>
+            <button className={styles.actionButton}>Connect</button>
           </div>
-        ) : (
-          <p>Wallet not connected</p>
-        )}
-      </div>
-
-      {/* Connect/Disconnect Buttons */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1, duration: 0.8 }}
-        className="buttons"
-      >
-        {walletAddress ? (
-          <button className="buttonOutline" onClick={disconnectWallet}>
-            Disconnect Wallet
-          </button>
-        ) : (
-          <button className="buttonOutline" onClick={connectWallet}>
-            Connect Wallet
-          </button>
-        )}
-      </motion.div>
-
-      <motion.h1
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        className="title"
-      >
-        Monash Hackfest Landing Page Test!
-      </motion.h1>
-      <motion.p
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.7, duration: 0.8 }}
-        className="description"
-      >
-        Experience Smooth Transitions and Animations!
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1, duration: 0.8 }}
-        className="buttons"
-      >
-        <button className="buttonOutline" onClick={handleGetStarted}>
-          Get Started
-        </button>
-        <button className="buttonOutline">Learn More</button>
-      </motion.div>
-
-      {/* Sidebar */}
-      <motion.div>
-        <Sidebar />
-      </motion.div>
+        </div>
+        <div className={styles.currencyGrid}>
+          <div className={styles.currencyCard}>
+            <Image
+              src="/flags/malaysia-flag.jpg"
+              alt="MYR"
+              width={30}
+              height={20}
+            />
+            <span>MYR</span>
+            <input
+              type="text"
+              value={currencyValues.MYR}
+              onChange={(e) => handleChange("MYR", e.target.value)}
+              className={styles.currencyInput}
+            />
+          </div>
+          <div className={styles.currencyCard}>
+            <Image
+              src="/flags/china-flag.jpg"
+              alt="CNY"
+              width={30}
+              height={20}
+            />
+            <span>CNY</span>
+            <input
+              type="text"
+              value={currencyValues.CNY}
+              onChange={(e) => handleChange("CNY", e.target.value)}
+              className={styles.currencyInput}
+            />
+          </div>
+          <div className={styles.currencyCard}>
+            <Image src="/flags/japan-flag.png" alt="JPY" width={30} height={20} />
+            <span>JPY</span>
+            <input
+              type="text"
+              value={currencyValues.JPY}
+              onChange={(e) => handleChange("JPY", e.target.value)}
+              className={styles.currencyInput}
+            />
+          </div>
+          <div className={styles.currencyCard}>
+            <Image
+              src="/flags/singapore-flag.png"
+              alt="SGD"
+              width={30}
+              height={20}
+            />
+            <span>SGD</span>
+            <input
+              type="text"
+              value={currencyValues.SGD}
+              onChange={(e) => handleChange("SGD", e.target.value)}
+              className={styles.currencyInput}
+            />
+          </div>
+        </div>
+        <div className={styles.transactionsSection}>
+          <h3 style={{ color: "#ffffff" }}>Transactions</h3>
+          <ul className={styles.transactionsList}>
+            <li className={styles.transactionItem}>
+              <span>Edisijuta Parking</span>
+              <span>2 MYR</span>
+            </li>
+            <li className={styles.transactionItem}>
+              <span>Edisijuta Parking</span>
+              <span>2 MYR</span>
+            </li>
+          </ul>
+        </div>
+      
 
       {/* Toast Notifications */}
       <ToastContainer />
     </motion.div>
+    </>
   );
 }
