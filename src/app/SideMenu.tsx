@@ -61,10 +61,10 @@ export const SideMenu = () => {
             </button>
           </Link>
 
-          <Link href="/pocket" passHref>
+          <Link href="/room" passHref>
             <button className={activeIndex === 1 ? 'active' : ''}>
-              <FaMoneyBillWave size={20} />
-              <p>Pocket</p>
+              <FaUsers size={20} />
+              <p>Room</p>
             </button>
           </Link>
 
