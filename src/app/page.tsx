@@ -16,14 +16,30 @@ export default function Home() {
   const [walletAddress, setWalletAddress] = useState<string | null>(null);
   const [balance, setBalance] = useState<number | null>(null);
   const [currencyValues, setCurrencyValues] = useState({
-    SOL: "8.80",
+    SOL: "",
     MYR: "0.00",
     CNY: "0.00",
     SGD: "0.00",
   });
+  const publicKey = walletAddress ? new PublicKey(walletAddress) : null;
+
+  useEffect(() => {
+    // Update the SOL value whenever balance or wallet changes
+    setCurrencyValues((prevValues) => ({
+      ...prevValues,
+      SOL: publicKey
+        ? balance !== null
+          ? `${balance.toFixed(3)} SOL`
+          : "Loading..."
+        : "N/A SOL",
+    }));
+  }, [publicKey, balance]);
 
   const handleChange = (currency: string, value: string) => {
-    setCurrencyValues({ ...currencyValues, [currency]: value });
+    if (currency !== "SOL") {
+        // Update the other currency values as needed
+        setCurrencyValues({ ...currencyValues, [currency]: value });
+      }
   };
 
   const handleGetStarted = () => {
