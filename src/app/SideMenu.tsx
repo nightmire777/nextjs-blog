@@ -1,7 +1,7 @@
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-import { FaWallet, FaMoneyBillWave, FaCreditCard, FaUser } from 'react-icons/fa';
+import { FaWallet, FaUsers, FaCreditCard, FaUser } from 'react-icons/fa';
 import './sidebar.css';
 
 export const SideMenu = () => {
@@ -14,7 +14,7 @@ export const SideMenu = () => {
       case '/':
         setActiveIndex(0);
         break;
-      case '/pocket':
+      case '/room':
         setActiveIndex(1);
         break;
       case '/view-card':
@@ -33,7 +33,7 @@ export const SideMenu = () => {
       <div className="inner">
         <div className="header">
           <img src="/logo.jpg" alt="Logo" className="logo" />
-          <h1>MetaPay</h1>
+          <h1>MetaPayd</h1>
         </div>
         <nav
           className="menu"
@@ -48,10 +48,10 @@ export const SideMenu = () => {
             </button>
           </Link>
 
-          <Link href="/pocket" passHref>
+          <Link href="/room" passHref>
             <button className={activeIndex === 1 ? 'active' : ''}>
-              <FaMoneyBillWave size={20} />
-              <p>Pocket</p>
+              <FaUsers size={20} />
+              <p>Room</p>
             </button>
           </Link>
 

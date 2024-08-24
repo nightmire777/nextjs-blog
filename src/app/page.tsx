@@ -6,7 +6,6 @@ import StartLoader from "./startLoader";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Connection, PublicKey, clusterApiUrl } from '@solana/web3.js';
-import Sidebar from './Sidebar';
 import Image from "next/image";
 import styles from "./Home.module.css"; // Import CSS module
 import { SideMenu } from "./SideMenu";
